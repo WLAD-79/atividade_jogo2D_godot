@@ -22,6 +22,7 @@ config/icon="res://sprites/icon.svg"
 [autoload]
 
 CoinManager="*res://scripts/coin_manager.gd"
+Global="*uid://cqrovw661la33"
 
 [dotnet]
 

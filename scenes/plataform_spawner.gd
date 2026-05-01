@@ -1,0 +1,15 @@
+extends Node2D
+
+@export var platforms: Array[PackedScene]
+
+@onready var marker : Marker2D = $Marker2D
+
+func _on_timer_timeout() -> void:
+	var random_platform : PackedScene = platforms.pick_random()
+	var random_platform_instance : Node = random_platform.instantiate()
+	add_child(random_platform_instance)
+	
+	random_platform_instance.position = marker.position
+	
+	var random_y_position : float = randf_range(-20, 50)
+	random_platform_instance.position.y = random_y_position

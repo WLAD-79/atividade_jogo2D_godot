@@ -1,7 +1,6 @@
 extends CharacterBody2D
 class_name Player
 
-
 @export var speed : float = 300.0
 @export var jump_velocity : float = -400.0
 
@@ -35,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	# Leitura de direção do input (esquerda/direita)
 	var direction := Input.get_axis("player_left", "player_right")
 	if direction:
-		velocity.x = direction * speed
+		velocity.x = direction * (speed * 1.5)
 		# se estiver se movendo para a direita, espelhamos o visual
 		sprite.flip_h = direction > 0.0
 	else:
@@ -52,5 +51,8 @@ func _physics_process(delta: float) -> void:
 			animation.play("jump")
 		if velocity.y > 0.0:
 			animation.play("fall")
+
+	if is_on_floor():
+		velocity.x -= Global.platform_speed/2
 
 	move_and_slide()
