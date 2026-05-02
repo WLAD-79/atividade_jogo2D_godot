@@ -9,16 +9,27 @@ class_name Player
 @onready var sprite := $Sprite as Sprite2D
 @onready var animation := $AnimationPlayer as AnimationPlayer
 
+@onready var score_label = get_tree().current_scene.get_node("CanvasLayer/ScoreLabel")
+var score : float = 0.0
+var score_speed : float = 100.0
+
+@onready var coin_label = get_tree().current_scene.get_node("CanvasLayer/CoinLabel")
+var coins : int = 0
 
 # A função _ready é chamada no início da execução.
 func _ready() -> void:
 	# Com o método connect, conectamos um sinal a uma função.
 	CoinManager.coin_collected.connect(_on_coin)
 
+func _process(delta):
+	score += score_speed * delta
+	score_label.text = "Score: " + str(int(score))
 
 # Como conectamos o sinal collected à função _on_coin, ela será invocada sempre
 #que uma moeda for coletada, exibindo o seu valor no console.
 func _on_coin(value : int) -> void:
+	coins += value
+	coin_label.text = "Moedas: " + str(coins)
 	print("MOEDA COLETADA, VALOR: " + str(value))
 
 

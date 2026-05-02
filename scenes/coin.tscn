@@ -47,7 +47,7 @@ _data = {
 
 [node name="Coin" type="Area2D" unique_id=1183373720 groups=["coins"]]
 script = ExtResource("1_i64fm")
-value = 5
+value = 1
 
 [node name="Coin" type="Sprite2D" parent="." unique_id=213572935]
 texture = ExtResource("2_11l1o")

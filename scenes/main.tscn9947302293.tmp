@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b27hkhvokanhu"]
+[gd_scene format=3 uid="uid://u47c22mlmfy0"]
 
 [ext_resource type="Script" uid="uid://wwde2nic1xvi" path="res://scripts/plataform_spawner.gd" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://c1g3in6l3n4i2" path="res://scenes/Ground.tscn" id="3_sugp2"]
@@ -7,10 +7,32 @@
 [ext_resource type="Script" uid="uid://vny33qktn7qq" path="res://scripts/canvas_layer.gd" id="4_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://b03rrlvodgtce" path="res://scenes/GroundCoin.tscn" id="4_tefeu"]
 
+[sub_resource type="GDScript" id="GDScript_tefeu"]
+resource_name = "Game"
+script/source = "extends Node2D
+
+
+func _ready() -> void:
+	get_tree().create_timer(60.0).timeout.connect(_go_to_menu)
+	CoinManager.coin_collected.connect(_on_coin_collected)
+
+
+# checagem de vitória, chamada após a coleta de qualquer moeda
+func _on_coin_collected(_value : int) -> void:
+	if len(get_tree().get_nodes_in_group(\"coins\")) == 1:
+		get_tree().change_scene_to_file(\"res://scenes/menu.tscn\")
+
+
+# ida para o menu após o tempo estipulado pelo timer na função _ready
+func _go_to_menu() -> void:
+	get_tree().change_scene_to_file(\"res://scenes/menu.tscn\")
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
 size = Vector2(332, 8)
 
 [node name="Main" type="Node2D" unique_id=1319012822]
+script = SubResource("GDScript_tefeu")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=664586981]
 position = Vector2(-2, 0)
@@ -54,18 +76,11 @@ scale = Vector2(5, 5)
 transform = Transform2D(5, 0, 0, 5, 0, 0)
 script = ExtResource("4_tbgi4")
 
-[node name="ScoreLabel" type="Label" parent="CanvasLayer" unique_id=1604499197]
-offset_right = 70.0
-offset_bottom = 23.0
-scale = Vector2(0.4399994, 0.39999986)
-text = "Score: 0"
-
 [node name="CoinLabel" type="Label" parent="CanvasLayer" unique_id=881325092]
-offset_top = 6.6
-offset_right = 79.0
-offset_bottom = 29.6
+offset_right = 39.0
+offset_bottom = 49.0
 scale = Vector2(0.4399994, 0.39999986)
-text = "Moedas: 0"
+text = "Moedas: "
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=2122808203]
 process_mode = 2

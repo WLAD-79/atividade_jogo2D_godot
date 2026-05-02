@@ -1,7 +1,6 @@
 extends Area2D
 class_name Coin
 
-
 signal collected(value : int)
 
 @export var value : int
