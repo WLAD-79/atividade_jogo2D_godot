@@ -50,6 +50,7 @@ script = ExtResource("1_i64fm")
 value = 1
 
 [node name="Coin" type="Sprite2D" parent="." unique_id=213572935]
+texture_filter = 1
 texture = ExtResource("2_11l1o")
 hframes = 4
 

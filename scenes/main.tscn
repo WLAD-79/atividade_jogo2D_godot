@@ -6,9 +6,61 @@
 [ext_resource type="Script" uid="uid://b7akrrxlsqwbg" path="res://scripts/game_over.gd" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://vny33qktn7qq" path="res://scripts/canvas_layer.gd" id="4_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://b03rrlvodgtce" path="res://scenes/GroundCoin.tscn" id="4_tefeu"]
+[ext_resource type="Texture2D" uid="uid://d1v5f3ry5wxan" path="res://sprites/spritesheet_tilemap.png" id="7_o6xl0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
 size = Vector2(332, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tipki"]
+texture = ExtResource("7_o6xl0")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrains_peering_bit/bottom_right_corner = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+0:0/0/terrains_peering_bit/bottom_left_corner = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrains_peering_bit/bottom_right_corner = 0
+1:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0/terrains_peering_bit/bottom_left_corner = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrains_peering_bit/bottom_right_corner = 0
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/bottom_left_corner = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrains_peering_bit/bottom_right_corner = 0
+3:0/0/terrains_peering_bit/bottom_side = 0
+3:0/0/terrains_peering_bit/bottom_left_corner = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrains_peering_bit/top_left_corner = 0
+0:1/0/terrains_peering_bit/top_side = 0
+0:1/0/terrains_peering_bit/top_right_corner = 0
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrains_peering_bit/top_left_corner = 0
+1:1/0/terrains_peering_bit/top_side = 0
+1:1/0/terrains_peering_bit/top_right_corner = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrains_peering_bit/top_left_corner = 0
+2:1/0/terrains_peering_bit/top_side = 0
+2:1/0/terrains_peering_bit/top_right_corner = 0
+3:1/0 = 0
+3:1/0/terrain_set = 0
+3:1/0/terrains_peering_bit/top_left_corner = 0
+3:1/0/terrains_peering_bit/top_side = 0
+3:1/0/terrains_peering_bit/top_right_corner = 0
+
+[sub_resource type="TileSet" id="TileSet_85g3d"]
+tile_size = Vector2i(32, 32)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.64882535, 0.00013572871, 0.5835154, 1)
+sources/0 = SubResource("TileSetAtlasSource_tipki")
 
 [node name="Main" type="Node2D" unique_id=1319012822]
 
@@ -102,6 +154,10 @@ shape = SubResource("RectangleShape2D_tbgi4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameOver" unique_id=260898766]
 position = Vector2(20, 0)
 shape = SubResource("RectangleShape2D_tbgi4")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1873691186]
+enabled = false
+tile_set = SubResource("TileSet_85g3d")
 
 [connection signal="timeout" from="PlataformSpawner/Timer" to="PlataformSpawner" method="_on_timer_timeout"]
 [connection signal="body_entered" from="GameOver" to="GameOver" method="_on_body_entered"]

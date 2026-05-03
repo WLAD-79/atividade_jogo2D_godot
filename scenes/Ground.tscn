@@ -9,10 +9,12 @@ size = Vector2(64, 18.07143)
 [node name="StaticBody2D" type="StaticBody2D" unique_id=458190807 groups=["players"]]
 script = ExtResource("2_lr1lr")
 
+[node name="Grass2" type="Sprite2D" parent="." unique_id=1366059057]
+texture_filter = 1
+position = Vector2(0, 2)
+scale = Vector2(1, 0.5)
+texture = ExtResource("1_ywuge")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2011974853]
 scale = Vector2(1, 0.6086956)
 shape = SubResource("RectangleShape2D_lr1lr")
-
-[node name="Grass2" type="Sprite2D" parent="." unique_id=1366059057]
-scale = Vector2(1, 0.3043478)
-texture = ExtResource("1_ywuge")
