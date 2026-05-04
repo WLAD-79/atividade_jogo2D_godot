@@ -95,7 +95,6 @@ script = ExtResource("2_0wfyh")
 platforms = Array[PackedScene]([ExtResource("3_sugp2"), ExtResource("4_tefeu")])
 
 [node name="Timer" type="Timer" parent="PlataformSpawner" unique_id=1412916399]
-wait_time = 0.8
 autostart = true
 
 [node name="Marker2D" type="Marker2D" parent="PlataformSpawner" unique_id=159630265]

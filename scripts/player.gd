@@ -16,6 +16,9 @@ var score_speed : float = 100.0
 @onready var coin_label = get_tree().current_scene.get_node("CanvasLayer/CoinLabel")
 var coins : int = 0
 
+var jump_count := 0 
+var max_jumps := 2
+
 # A função _ready é chamada no início da execução.
 func _ready() -> void:
 	# Com o método connect, conectamos um sinal a uma função.
@@ -37,10 +40,17 @@ func _physics_process(delta: float) -> void:
 	# Gravidade
 	if not is_on_floor():
 		velocity += get_gravity() * delta * 0.8
+		
+	if is_on_floor():
+		jump_count = 0
 
 	# Pulo, atribuição direta de velocidade vertical
-	if Input.is_action_just_pressed("player_jump") and is_on_floor():
+	if Input.is_action_just_pressed("player_jump") and jump_count < max_jumps:
+		if jump_count == 1:
+			velocity.y = 0
 		velocity.y = jump_velocity
+		jump_count += 1
+	
 
 	# Leitura de direção do input (esquerda/direita)
 	var direction := Input.get_axis("player_left", "player_right")
